@@ -14,32 +14,32 @@
         .subtitle { color: #888; font-size: 1rem; margin-top: 5px; }
         .linkedin-link { display: inline-block; margin-top: 15px; color: #0077b5; text-decoration: none; font-weight: 600; }
 
-/* Navigation Menu */
+        /* Navigation Menu */
         nav { text-align: center; margin-bottom: 40px; }
         nav a { color: #666; margin: 0 15px; text-decoration: none; font-weight: 600; transition: 0.3s; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
         nav a:hover { color: var(--primary); }
 
         /* About Section Styles */
-.about-section { 
-    display: none; /* මුලින්ම සැඟවීමට */
-    padding: 60px 20px; 
-    max-width: 1000px; 
-    margin: auto; 
-    align-items: center; 
-    gap: 50px; 
-    border-top: 1px solid #111; 
-    border-bottom: 1px solid #111; 
-    margin-bottom: 50px; 
-}
-       .about-image { 
-    width: 300px; /* ඔබට අවශ්‍ය පළල */
-    height: 300px; /* රාමුවේ උස */
-    border-radius: 20px; 
-    object-fit: cover; /* පින්තූරය රාමුව ඇතුළට පුරවන විදිහ */
-    object-position: top center; /* <--- මෙය අලුතින් එක් කළා. ඔළුව කැපෙන්නේ නැතිව පින්තූරය ඉහළට තබා ගැනීමට */
-    border: 1px solid #222; 
-    filter: grayscale(20%); 
-}
+        .about-section { 
+            display: none; /* මුලින්ම සැඟවීමට */
+            padding: 60px 20px; 
+            max-width: 1000px; 
+            margin: auto; 
+            align-items: center; 
+            gap: 50px; 
+            border-top: 1px solid #111; 
+            border-bottom: 1px solid #111; 
+            margin-bottom: 50px; 
+        }
+        .about-image { 
+            width: 300px;
+            height: 300px;
+            border-radius: 20px; 
+            object-fit: cover;
+            object-position: top center;
+            border: 1px solid #222; 
+            filter: grayscale(20%); 
+        }
         .about-content { flex: 1; }
         .about-content h2 { font-size: 2.2rem; margin-bottom: 20px; }
         .about-content p { color: #888; line-height: 1.8; font-size: 1.05rem; margin-bottom: 15px; }
@@ -48,7 +48,7 @@
         .filter-btn { background: none; border: 1px solid #222; color: #777; padding: 10px 20px; margin: 5px; cursor: pointer; border-radius: 50px; font-weight: 600; transition: 0.3s; font-size: 0.85rem; }
         .filter-btn.active, .filter-btn:hover { background: var(--primary); color: black; border-color: var(--primary); }
 
-        #graphic-subs { display: none; margin-top: 10px; padding-top: 10px; border-top: 1px solid #1a1a1a; }
+        #video-subs { display: none; margin-top: 10px; padding-top: 10px; border-top: 1px solid #1a1a1a; }
 
         .container { max-width: 1200px; margin: auto; padding: 40px 20px; }
         .work-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; align-items: start; }
@@ -56,18 +56,7 @@
         .card { background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid #1a1a1a; transition: 0.3s; }
         .card:hover { transform: translateY(-5px); border-color: #333; }
         
-        /* Social Media Posts - Square (1:1) */
-       .card.social .thumb, 
-.card.logo .thumb { 
-    width: 100%; 
-    aspect-ratio: 1 / 1; 
-    object-fit: cover; 
-    display: block;
-    background: #151515;
-        }
-        
-        /* YouTube Thumbnails & Videos - Cinematic (16:9) */
-        .card.thumbnail .thumb,
+        /* Videos - Cinematic (16:9) */
         .video-container { 
             width: 100%;
             aspect-ratio: 16 / 9; 
@@ -79,6 +68,8 @@
         .card-info { padding: 20px; text-align: left; }
         .card-info h3 { margin: 0; font-size: 1.1rem; }
         .card-info p { margin: 5px 0 0; font-size: 0.8rem; color: #666; text-transform: uppercase; letter-spacing: 1px; }
+
+        #empty-msg { display: none; text-align: center; color: #666; padding: 60px 20px; font-size: 1rem; }
 
         footer { padding: 40px; color: #333; font-size: 0.8rem; text-align: center; border-top: 1px solid #111; }
     </style>
@@ -119,280 +110,114 @@ My goal is to bridge the gap between brands and their audiences through creative
 
 <div class="filter-wrapper">
     <button class="filter-btn active" onclick="filterSelection('all'); hideSubs()">All Works</button>
-    <button class="filter-btn" onclick="toggleGraphicMenu()">Graphic Design ▾</button>
-    <button class="filter-btn" onclick="filterSelection('video'); hideSubs()">Video Editing</button>
+    <button class="filter-btn" onclick="toggleVideoMenu()">Video Editing ▾</button>
     <button class="filter-btn" onclick="filterSelection('game'); hideSubs()">Price List</button>
     
-    <div id="graphic-subs">
-        <button class="filter-btn" onclick="filterSelection('design')">All Designs</button>
-        <button class="filter-btn" onclick="filterSelection('social')">Social Media</button>
-        <button class="filter-btn" onclick="filterSelection('thumbnail')">Thumbnails</button>
-        <button class="filter-btn" onclick="filterSelection('logo')">Logos</button>
+    <div id="video-subs">
+        <button class="filter-btn" onclick="filterSelection('video')">All Videos</button>
+        <button class="filter-btn" onclick="filterSelection('video-event')">Event & Wedding Video</button>
+        <button class="filter-btn" onclick="filterSelection('video-commercial')">Commercial & Advertising Video</button>
+        <button class="filter-btn" onclick="filterSelection('video-online')">Online & Social Media Video</button>
     </div>
 </div>
 
 <div class="container">
     <div class="work-grid" id="grid">
-        
-<div class="card design social">
-    <img src="https://github.com/shehanpereraofficial/portfolio/blob/main/Sample%20post%201.jpg?raw=true" class="thumb">
-    <div class="card-info">
-        <h3>Sample Post 01</h3>
-        <p>Design / Social Media</p>
-    </div>
-</div>
 
-<div class="card design social">
-    <img src="https://github.com/shehanpereraofficial/portfolio/blob/main/Sample%20post%202.jpg?raw=true" class="thumb">
-    <div class="card-info">
-        <h3>Sample Post 02</h3>
-        <p>Design / Social Media</p>
-    </div>
-</div>
+        <!-- Event & Wedding Video -->
+        <!-- වීඩියෝ එකතු කරන්න: <div class="card video video-event"> ... </div> -->
 
-<div class="card design social">
-    <img src="https://github.com/shehanpereraofficial/portfolio/blob/main/Sample%20post%203.jpg?raw=true" class="thumb">
-    <div class="card-info">
-        <h3>Sample Post 03</h3>
-        <p>Design / Social Media</p>
-    </div>
-</div>
-        
-        <div class="card design social">
-    <img src="https://github.com/shehanpereraofficial/portfolio/blob/main/Sample%20post%204.jpg?raw=true" class="thumb">
-    <div class="card-info">
-        <h3>Sample Post 04 </h3>
-        <p>Design / Social Media</p>
-    </div>
-</div>
-
-           <div class="card design social">
-    <img src="https://github.com/shehanpereraofficial/portfolio/blob/main/Sample%20post%205.jpg?raw=true" class="thumb">
-    <div class="card-info">
-        <h3>Sample Post 05</h3>
-        <p>Design / Social Media</p>
-    </div>
-</div>
-
-           <div class="card design social">
-    <img src="https://github.com/shehanpereraofficial/portfolio/blob/main/Sample%20post%206.jpg?raw=true" class="thumb">
-    <div class="card-info">
-        <h3>Sample Post 06</h3>
-        <p>Design / Social Media</p>
-    </div>
-</div>
-         <div class="card design social">
-            <img src="https://github.com/shehanpereraofficial/portfolio/blob/main/Sample%20post%207.jpg?raw=true" class="thumb">
-            <div class="card-info">
-                <h3>Sample Post 07</h3>
-                <p>Design / Social Media</p>
+        <!-- Commercial & Advertising Video -->
+        <div class="card video video-commercial">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/X02csU11nXg" frameborder="0" allowfullscreen></iframe>
             </div>
-        </div>
-        
-        <div class="card video">
-    <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/X02csU11nXg" frameborder="0" allowfullscreen></iframe>
-    </div>
-    <div class="card-info">
-        <h3>Commercial/Promotional Video 01 </h3>
-        <p>Video Editing</p>
-    </div>
-</div>
-
-               <div class="card video">
-    <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/ViY3bBr7X8k" frameborder="0" allowfullscreen></iframe>
-    </div>
-    <div class="card-info">
-        <h3>Commercial/Promotional Video 02 </h3>
-        <p>Video Editing</p>
-    </div>
-</div>
-
-         <div class="card video">
-    <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/uVTkAAIL78E" frameborder="0" allowfullscreen></iframe>
-    </div>
-    <div class="card-info">
-        <h3>Product Review Video 02 </h3>
-        <p>Video Editing</p>
-    </div>
-</div>
-
-        <div class="card video">
-    <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/Of4qt8l2cEk" frameborder="0" allowfullscreen></iframe>
-    </div>
-    <div class="card-info">
-        <h3>Product Review Video 01 </h3>
-        <p>Video Editing</p>
-    </div>
-</div>
-
-               <div class="card video">
-    <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/fqziGPvfgkI" frameborder="0" allowfullscreen></iframe>
-    </div>
-    <div class="card-info">
-        <h3>Social Media Guide Video 01 </h3>
-        <p>Video Editing</p>
-    </div>
-</div>
-
-                <div class="card video">
-    <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/zhHPURwgmlQ" frameborder="0" allowfullscreen></iframe>
-    </div>
-    <div class="card-info">
-        <h3>Tech News Video 01 </h3>
-        <p>Video Editing</p>
-    </div>
-</div>
-        
-        <div class="card design thumbnail">
-            <img src="https://github.com/shehanpereraofficial/portfolio/blob/main/thumbnail%20design%20sample%2001.jpg?raw=true" class="thumb">
             <div class="card-info">
-                <h3> Thumbnail Sample 01 </h3>
-                <p>Design / YouTube</p>
+                <h3>Commercial/Promotional Video 01 </h3>
+                <p>Video Editing / Commercial & Advertising</p>
             </div>
         </div>
 
-           <div class="card design thumbnail">
-            <img src="https://github.com/shehanpereraofficial/portfolio/blob/main/thumbnail%20design%20sample%2002.jpg?raw=true" class="thumb">
+        <div class="card video video-commercial">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/ViY3bBr7X8k" frameborder="0" allowfullscreen></iframe>
+            </div>
             <div class="card-info">
-                <h3>Thumbnail Sample 02</h3>
-                <p>Design / YouTube</p>
+                <h3>Commercial/Promotional Video 02 </h3>
+                <p>Video Editing / Commercial & Advertising</p>
             </div>
         </div>
 
-             <div class="card design thumbnail">
-            <img src="https://github.com/shehanpereraofficial/portfolio/blob/main/thumbnail%20design%20sample%2003.jpg?raw=true" class="thumb">
+        <div class="card video video-commercial">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/uVTkAAIL78E" frameborder="0" allowfullscreen></iframe>
+            </div>
             <div class="card-info">
-                <h3>Thumbnail Sample 03</h3>
-                <p>Design / YouTube</p>
+                <h3>Product Review Video 02 </h3>
+                <p>Video Editing / Commercial & Advertising</p>
             </div>
         </div>
 
-                    <div class="card design thumbnail">
-            <img src="https://github.com/shehanpereraofficial/portfolio/blob/main/thumbnail%20design%20sample%2004.jpg?raw=true" class="thumb">
+        <div class="card video video-commercial">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/Of4qt8l2cEk" frameborder="0" allowfullscreen></iframe>
+            </div>
             <div class="card-info">
-                <h3>Thumbnail Sample 04</h3>
-                <p>Design / YouTube</p>
+                <h3>Product Review Video 01 </h3>
+                <p>Video Editing / Commercial & Advertising</p>
             </div>
         </div>
 
-                  <div class="card design thumbnail">
-            <img src="https://github.com/shehanpereraofficial/portfolio/blob/main/thumbnail%20design%20sample%2005.jpg?raw=true" class="thumb">
+        <!-- Online & Social Media Video -->
+        <div class="card video video-online">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/fqziGPvfgkI" frameborder="0" allowfullscreen></iframe>
+            </div>
             <div class="card-info">
-                <h3>Thumbnail Sample 05</h3>
-                <p>Design / YouTube</p>
+                <h3>Social Media Guide Video 01 </h3>
+                <p>Video Editing / Online & Social Media</p>
             </div>
         </div>
 
-          <div class="card design thumbnail">
-            <img src="https://github.com/shehanpereraofficial/portfolio/blob/main/%E0%B6%B1%E0%B7%92%E0%B6%B1%E0%B7%8A%E0%B6%AF%20%E0%B6%BA%E0%B6%B1%E0%B7%8A%E0%B6%B1%E0%B7%99%20%E0%B6%B1%E0%B7%90%E0%B6%AF%E0%B7%8A%E0%B6%AF%20-%20%E0%B6%B4%E0%B7%90%E0%B6%BA%2010%E0%B6%9A%E0%B7%8A%20%E0%B6%AF%E0%B7%92%E0%B6%9C%E0%B7%94%20%E0%B7%80%E0%B7%90%E0%B7%83%E0%B7%92%20%E0%B7%81%E0%B6%B6%E0%B7%8A%E0%B6%AF%20-%20Deep%20Sleep.jpg?raw=true" class="thumb">
+        <div class="card video video-online">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/zhHPURwgmlQ" frameborder="0" allowfullscreen></iframe>
+            </div>
             <div class="card-info">
-                <h3>Thumbnail Sample 06</h3>
-                <p>Design / YouTube</p>
+                <h3>Tech News Video 01 </h3>
+                <p>Video Editing / Online & Social Media</p>
             </div>
         </div>
 
-                  <div class="card design thumbnail">
-            <img src="https://github.com/shehanpereraofficial/portfolio/blob/main/%E0%B6%B8%E0%B6%82%E0%B6%AD%E0%B7%8A%E2%80%8D%E0%B6%BB%20%E0%B6%B6%E0%B6%BD%E0%B6%BA%E0%B7%99%E0%B6%B1%E0%B7%8A%20%E0%B6%BA%E0%B6%9A%E0%B7%94%E0%B6%B1%E0%B7%8A%E0%B6%9C%E0%B7%99%E0%B6%B1%E0%B7%8A%20%E0%B7%80%E0%B7%90%E0%B6%A9%E0%B6%9C%E0%B7%99%E0%B6%B1%20%E0%B7%84%E0%B7%90%E0%B6%AF%E0%B7%96%20%E0%B6%B4%E0%B6%B1%E0%B7%8A%E0%B7%83%E0%B6%BD%20-%20Ancient%20Buddhist%20Temple%20Srilanka.jpg?raw=true" class="thumb">
+        <!-- Price List -->
+        <div class="card game" style="border: 1px solid #00ff88;">
             <div class="card-info">
-                <h3>Thumbnail Sample 07</h3>
-                <p>Design / YouTube</p>
+                <h2 style="color: #fff; margin-bottom: 10px;">Video Editing</h2>
+                <p style="color: #00ff88; font-size: 1.2rem; font-weight: 800;">Starting from Rs. 2,500</p>
+                <ul style="color: #888; padding: 0; list-style: none; font-size: 0.9rem; line-height: 2;">
+                    <li>✓ TikTok / Reels / Shorts</li>
+                    <li>✓ Cinematic Video Reels</li>
+                    <li>✓ Color Grading & SFX</li>
+                    <li>✓ Text Overlays & Subtitles</li>
+                </ul>
             </div>
         </div>
-
-                   <div class="card design thumbnail">
-            <img src="https://github.com/shehanpereraofficial/portfolio/blob/main/%E0%B7%84%E0%B7%92%E0%B6%AD%E0%B6%A7%20%E0%B6%9C%E0%B7%90%E0%B6%A7%E0%B7%99%E0%B6%B1%20%E0%B6%BD%E0%B7%83%E0%B7%8A%E0%B7%83%E0%B6%B1%20%E0%B7%80%E0%B6%AF%E0%B6%B1%E0%B7%8A%20%E0%B6%91%E0%B6%9A%E0%B6%AD%E0%B7%94%E0%B7%80%20-%20Best%20Motivational%20Quotes%20for%20Success%20&%20Life.jpg?raw=true" class="thumb">
-            <div class="card-info">
-                <h3>Thumbnail Sample 08</h3>
-                <p>Design / YouTube</p>
-            </div>
-        </div>
-
-            <div class="card design thumbnail">
-            <img src="https://github.com/shehanpereraofficial/portfolio/blob/main/%E0%B7%84%E0%B7%92%E0%B6%AD%E0%B6%A7%20%E0%B7%80%E0%B6%AF%E0%B7%92%E0%B6%B1%20%E0%B6%BD%E0%B7%83%E0%B7%8A%E0%B7%83%E0%B6%B1%20Short%20%E0%B7%80%E0%B7%93%E0%B6%A9%E0%B7%92%E0%B6%BA%E0%B7%9D%20%E0%B6%91%E0%B6%9A%E0%B6%AD%E0%B7%94%E0%B7%80%E0%B6%9A%E0%B7%8A%20-%20Trending%20TikTok%20Videos%20Today.jpg?raw=true" class="thumb">
-            <div class="card-info">
-                <h3>Thumbnail Sample 09</h3>
-                <p>Design / YouTube</p>
-            </div>
-        </div>
-
-            <div class="card design thumbnail">
-            <img src="https://github.com/shehanpereraofficial/portfolio/blob/main/10%20Hours%20of%20Heavy%20Rain%20Sounds%20-%20Best%20Rain%20for%20Deep%20Sleep%20&%20Relaxation%20%E0%B6%B1%E0%B7%92%E0%B6%AF%E0%B7%8F%E0%B6%9C%E0%B6%B1%E0%B7%8A%E0%B6%B1%20%E0%B7%83%E0%B7%94%E0%B6%B4%E0%B7%92%E0%B6%BB%E0%B7%92%E0%B6%BA%E0%B6%9A%E0%B7%8A.jpg?raw=true" class="thumb">
-            <div class="card-info">
-                <h3>Thumbnail Sample 10</h3>
-                <p>Design / YouTube</p>
-            </div>
-        </div>
-
-                <div class="card design thumbnail">
-            <img src="https://github.com/shehanpereraofficial/portfolio/blob/main/2025%20%E0%B7%84%E0%B7%9C%E0%B6%B3%E0%B6%B8%20Trending%20TikTok%20%E0%B7%80%E0%B7%93%E0%B6%A9%E0%B7%92%E0%B6%BA%E0%B7%9D%20%E0%B6%91%E0%B6%9A%E0%B6%AD%E0%B7%94%E0%B7%80%20-%20Viral%20Sinhala.jpg?raw=true" class="thumb">
-            <div class="card-info">
-                <h3>Thumbnail Sample 11</h3>
-                <p>Design / YouTube</p>
-            </div>
-        </div>
-
-        <div class="card design logo">
-    <img src="https://github.com/shehanpereraofficial/portfolio/blob/main/Simple%20Logo%20Sample%2001.png?raw=true" class="thumb">
-    <div class="card-info">
-        <h3>Simple Logo Sample 01</h3>
-        <p>Design / Logo</p>
-    </div>
-</div>
-
-<div class="card design logo">
-    <img src="https://github.com/shehanpereraofficial/portfolio/blob/main/Simple%20Logo%20Sample%2002.png?raw=true" class="thumb">
-    <div class="card-info">
-        <h3>Simple Logo Sample 02</h3>
-        <p>Design / Logo</p>
-    </div>
-</div>
 
         <div class="card game">
-    <div class="card-info">
-        <h2 style="color: #fff; margin-bottom: 10px;">Graphic Design</h2>
-        <p style="color: #00ff88; font-size: 1.2rem; font-weight: 800;">Starting from Rs. 1,000</p>
-        <ul style="color: #888; padding: 0; list-style: none; font-size: 0.9rem; line-height: 2;">
-            <li>✓ Social Media Posts (Rs. 1,500+)</li>
-            <li>✓ YouTube Thumbnails (Rs. 1,000+)</li>
-            <li>✓ Brand Logos (Rs. 3,500+)</li>
-            <li>✓ High-Quality JPG/PNG Output</li>
-        </ul>
-    </div>
-</div>
-
-<div class="card game" style="border: 1px solid #00ff88;">
-    <div class="card-info">
-        <h2 style="color: #fff; margin-bottom: 10px;">Video Editing</h2>
-        <p style="color: #00ff88; font-size: 1.2rem; font-weight: 800;">Starting from Rs. 2,500</p>
-        <ul style="color: #888; padding: 0; list-style: none; font-size: 0.9rem; line-height: 2;">
-            <li>✓ TikTok / Reels / Shorts</li>
-            <li>✓ Cinematic Video Reels</li>
-            <li>✓ Color Grading & SFX</li>
-            <li>✓ Text Overlays & Subtitles</li>
-        </ul>
-    </div>
-</div>
-
-<div class="card game">
-    <div class="card-info">
-        <h2 style="color: #fff; margin-bottom: 10px;">Monthly Retainer</h2>
-        <p style="color: #00ff88; font-size: 1.2rem; font-weight: 800;">Custom Pricing</p>
-        <ul style="color: #888; padding: 0; list-style: none; font-size: 0.9rem; line-height: 2;">
-            <li>✓ Full Channel Management</li>
-            <li>✓ Social Media Branding</li>
-            <li>✓ Fast Delivery (Under 24h)</li>
-            <li>✓ Priority Support</li>
-        </ul>
-    </div>
-</div>
+            <div class="card-info">
+                <h2 style="color: #fff; margin-bottom: 10px;">Monthly Retainer</h2>
+                <p style="color: #00ff88; font-size: 1.2rem; font-weight: 800;">Custom Pricing</p>
+                <ul style="color: #888; padding: 0; list-style: none; font-size: 0.9rem; line-height: 2;">
+                    <li>✓ Full Channel Management</li>
+                    <li>✓ Social Media Branding</li>
+                    <li>✓ Fast Delivery (Under 24h)</li>
+                    <li>✓ Priority Support</li>
+                </ul>
+            </div>
+        </div>
         
     </div>
+    <div id="empty-msg">Coming soon — new work will be added here.</div>
 </div>
 
 <footer>&copy; 2026 SHEHANONLINE.ME</footer>
@@ -400,20 +225,32 @@ My goal is to bridge the gap between brands and their audiences through creative
 <script>
     function filterSelection(c) {
         var x = document.getElementsByClassName("card");
-        if (c == "all") c = "";
+        var shown = 0;
         for (var i = 0; i < x.length; i++) {
             x[i].style.display = "none";
-            if (x[i].className.indexOf(c) > -1) x[i].style.display = "block";
+            var match;
+            if (c == "all") {
+                // All Works: Price List කාඩ්ස් මඟහරින්න
+                match = !x[i].classList.contains("game");
+            } else {
+                match = x[i].className.indexOf(c) > -1;
+            }
+            if (match) {
+                x[i].style.display = "block";
+                shown++;
+            }
         }
+        // කිසිම කාඩ් එකක් නැත්නම් පණිවිඩයක් පෙන්වන්න
+        document.getElementById("empty-msg").style.display = shown === 0 ? "block" : "none";
     }
 
-    function toggleGraphicMenu() {
-        var menu = document.getElementById("graphic-subs");
+    function toggleVideoMenu() {
+        var menu = document.getElementById("video-subs");
         menu.style.display = (menu.style.display === "block") ? "none" : "block";
-        if (menu.style.display === "block") filterSelection('design');
+        if (menu.style.display === "block") filterSelection('video');
     }
 
-    function hideSubs() { document.getElementById("graphic-subs").style.display = "none"; }
+    function hideSubs() { document.getElementById("video-subs").style.display = "none"; }
 
     var btns = document.getElementsByClassName("filter-btn");
     for (var i = 0; i < btns.length; i++) {
@@ -425,27 +262,26 @@ My goal is to bridge the gap between brands and their audiences through creative
     }
 
     function showSection(sectionId) {
-    // සෙක්ෂන් දෙකම ලබා ගන්න
-    var about = document.getElementById("about");
-    var workGrid = document.querySelector(".container"); // ඔබේ නිර්මාණ ඇති ප්‍රධාන කොටස
-    var filters = document.querySelector(".filter-wrapper");
+        var about = document.getElementById("about");
+        var workGrid = document.querySelector(".container");
+        var filters = document.querySelector(".filter-wrapper");
 
-    if (sectionId === 'about') {
-        about.style.display = "flex";      // About පෙන්වන්න
-        workGrid.style.display = "none";    // නිර්මාණ සඟවන්න
-        filters.style.display = "none";     // ෆිල්ටර්ස් සඟවන්න
-    } else {
-        about.style.display = "none";      // About සඟවන්න
-        workGrid.style.display = "block";   // නිර්මාණ පෙන්වන්න
-        filters.style.display = "block";    // ෆිල්ටර්ස් පෙන්වන්න
-        filterSelection('all');             // Portfolio එබූ විට සියල්ල පෙන්වීමට
+        if (sectionId === 'about') {
+            about.style.display = "flex";
+            workGrid.style.display = "none";
+            filters.style.display = "none";
+        } else {
+            about.style.display = "none";
+            workGrid.style.display = "block";
+            filters.style.display = "block";
+            filterSelection('all');
+        }
     }
-}
 
-// සයිට් එක මුලින්ම ලෝඩ් වන විට පෝර්ට්ෆෝලියෝ එක පමණක් පෙන්වීමට
-window.onload = function() {
-    showSection('work');
-};
+    // සයිට් එක මුලින්ම ලෝඩ් වන විට පෝර්ට්ෆෝලියෝ එක පමණක් පෙන්වීමට
+    window.onload = function() {
+        showSection('work');
+    };
 </script>
 </body>
 </html>
