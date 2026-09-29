@@ -56,6 +56,11 @@
         .card { background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid #1a1a1a; transition: 0.3s; }
         .card:hover { transform: translateY(-5px); border-color: #333; }
         
+        /* Price List - කොළ පාට ෆ්‍රේම් එක hover කරන කාඩ් එකට මාරු වෙනවා */
+        .card.game:hover { border-color: #00ff88; }
+        .card.game.featured { border-color: #00ff88; }
+        .work-grid:has(.card.game:hover) .card.game.featured:not(:hover) { border-color: #1a1a1a; }
+
         /* Videos - Cinematic (16:9) */
         .video-container { 
             width: 100%;
@@ -190,7 +195,7 @@ My goal is to bridge the gap between brands and their audiences through creative
         </div>
 
         <!-- Price List -->
-        <div class="card game" style="border: 1px solid #00ff88;">
+        <div class="card game featured">
             <div class="card-info">
                 <h2 style="color: #fff; margin-bottom: 10px;">Video Editing</h2>
                 <p style="color: #00ff88; font-size: 1.2rem; font-weight: 800;">Starting from Rs. 2,500</p>
