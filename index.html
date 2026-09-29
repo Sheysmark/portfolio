@@ -52,7 +52,7 @@
         #video-subs { display: none; margin-top: 10px; padding-top: 10px; border-top: 1px solid #1a1a1a; }
 
         .container { max-width: 1200px; margin: auto; padding: 40px 20px; }
-        .work-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; align-items: start; }
+        .work-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 25px; align-items: start; }
         
         .card { background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid #1a1a1a; transition: 0.3s; }
         .card:hover { transform: translateY(-5px); border-color: #333; }
@@ -78,6 +78,48 @@
         #empty-msg { display: none; text-align: center; color: #666; padding: 60px 20px; font-size: 1rem; }
 
         footer { padding: 40px; color: #333; font-size: 0.8rem; text-align: center; border-top: 1px solid #111; }
+    
+        /* ===== Mobile / Tablet Responsive ===== */
+        img { max-width: 100%; }
+
+        @media (max-width: 768px) {
+            header { padding: 40px 16px 20px; }
+            h1 { font-size: 2.3rem; letter-spacing: -1px; }
+            .subtitle { font-size: 0.9rem; }
+            nav { margin-bottom: 25px; }
+
+            /* About: stack vertically, images side by side on top */
+            .about-section { flex-direction: column; align-items: stretch; gap: 30px; padding: 30px 20px; margin-bottom: 30px; }
+            .about-images { flex-direction: row; gap: 12px; width: 100%; }
+            .about-images .about-image { flex: 1; min-width: 0; width: auto; height: auto; aspect-ratio: 1 / 1; border-radius: 14px; }
+            .about-content h2 { font-size: 1.8rem; margin-bottom: 15px; }
+            .about-content p { font-size: 0.98rem; line-height: 1.7; }
+
+            /* Filters */
+            .filter-wrapper { padding: 10px 8px; }
+            .filter-btn { padding: 8px 14px; margin: 4px 3px; font-size: 0.8rem; }
+            #video-subs { margin-top: 6px; padding-top: 6px; }
+
+            /* Grid */
+            .container { padding: 25px 16px; }
+            .work-grid { gap: 18px; }
+            .card-info { padding: 16px; }
+            .card-info h3 { font-size: 1rem; }
+
+            footer { padding: 30px 16px; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 1.9rem; }
+            .about-section { padding: 20px 16px; }
+            .filter-btn { padding: 7px 12px; font-size: 0.78rem; }
+            .container { padding: 20px 14px; }
+        }
+
+        /* Touch screens: no lift-on-hover jump */
+        @media (hover: none) {
+            .card:hover { transform: none; }
+        }
     </style>
 </head>
 <body>
